@@ -30,6 +30,11 @@
     width: 100%;
     min-height: 100%;
     margin: 0;
+    overscroll-behavior: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
   }
 
   body {
@@ -78,6 +83,17 @@
     user-select: none;
     -webkit-user-select: none;
     touch-action: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+  }
+
+  .game * {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+  }
+
+  .game ::selection {
+    background: transparent;
   }
 
   #gameCanvas {
@@ -88,6 +104,11 @@
     display: block;
     cursor: pointer;
     outline: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+    touch-action: none;
   }
 
   .glass-grain {
@@ -2154,6 +2175,8 @@
     window.addEventListener("pointerup", releasePointer);
     window.addEventListener("pointercancel", releasePointer);
     canvas.addEventListener("contextmenu", (event) => event.preventDefault());
+    canvas.addEventListener("touchstart", (event) => event.preventDefault(), { passive: false });
+    canvas.addEventListener("touchmove", (event) => event.preventDefault(), { passive: false });
     window.addEventListener("keydown", (event) => {
       const isJump = event.code === "Space" || event.code === "ArrowUp" || event.code === "KeyW";
       const targetIsButton = event.target && event.target.closest && event.target.closest("button");
